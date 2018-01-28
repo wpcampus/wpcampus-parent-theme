@@ -80,7 +80,8 @@ function wpcampus_add_favicons() {
 
 	?>
 	<link rel="shortcut icon" href="<?php echo $favicons_folder; ?>wpcampus-favicon-60.png"/>
-	<link rel="apple-touch-icon" href="<?php echo $favicons_folder; ?>wpcampus-favicon-60.png"/><?php
+	<link rel="apple-touch-icon" href="<?php echo $favicons_folder; ?>wpcampus-favicon-60.png"/>
+	<?php
 
 	// Set the image sizes.
 	$image_sizes = array( 57, 72, 76, 114, 120, 144, 152 );
