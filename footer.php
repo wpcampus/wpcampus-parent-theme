@@ -1,4 +1,12 @@
-	</div><!-- #wpc-wrapper -->
+				</div><!-- .wpc-container -->
+			</div><!-- #wpc-content-->
+		</div><!-- #wpc-main -->
+		<?php
+
+		do_action( 'wpc_add_after_main' );
+
+		?>
+	</div><!-- #wpc-body -->
 	<?php
 
 	// Print network footer.
@@ -6,8 +14,8 @@
 		wpcampus_print_network_footer();
 	}
 
-	wp_footer();
-
 	?>
+	</div><!-- #wpc-wrapper -->
+	<?php wp_footer(); ?>
 </body>
 </html>
