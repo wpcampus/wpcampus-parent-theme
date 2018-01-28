@@ -37,3 +37,31 @@ function wpcampus_parent_setup_theme() {
 	));
 }
 add_action( 'after_setup_theme', 'wpcampus_parent_setup_theme', 0 );
+
+/**
+ * Load favicons.
+ */
+function wpcampus_add_favicons() {
+
+	// Set the images folder.
+	$favicons_folder = get_template_directory_uri() . '/assets/images/favicons/';
+
+	?>
+	<link rel="shortcut icon" href="<?php echo $favicons_folder; ?>wpcampus-favicon-60.png"/>
+	<link rel="apple-touch-icon" href="<?php echo $favicons_folder; ?>wpcampus-favicon-60.png"/><?php
+
+	// Set the image sizes.
+	$image_sizes = array( 57, 72, 76, 114, 120, 144, 152 );
+
+	foreach ( $image_sizes as $size ) :
+
+		?>
+		<link rel="apple-touch-icon" sizes="<?php echo "{$size}x{$size}"; ?>" href="<?php echo $favicons_folder; ?>wpcampus-favicon-<?php echo $size; ?>.png"/>
+		<?php
+
+	endforeach;
+
+}
+add_action( 'wp_head', 'wpcampus_add_favicons' );
+add_action( 'admin_head', 'wpcampus_add_favicons' );
+add_action( 'login_head', 'wpcampus_add_favicons' );
