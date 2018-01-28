@@ -71,6 +71,21 @@ function wpcampus_parent_setup_theme_parts() {
 add_action( 'wp', 'wpcampus_parent_setup_theme_parts', 0 );
 
 /**
+ * Setup/enqueue styles and scripts for theme.
+ */
+function wpcampus_parent_enqueue_theme() {
+
+	// Set the directories.
+	$wpcampus_dir = trailingslashit( get_template_directory_uri() );
+	$wpcampus_dir_css = $wpcampus_dir . 'assets/css/';
+
+	// Enqueue the base styles.
+	wp_enqueue_style( 'wpcampus-parent', $wpcampus_dir_css . 'styles.min.css', array(), null );
+
+}
+add_action( 'wp_enqueue_scripts', 'wpcampus_parent_enqueue_theme', 0 );
+
+/**
  * Load favicons.
  */
 function wpcampus_add_favicons() {

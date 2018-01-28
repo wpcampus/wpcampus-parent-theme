@@ -1,0 +1,21 @@
+// Include our dependencies.
+@import "normalize";
+
+*,
+*:before,
+*:after {
+	box-sizing: inherit;
+}
+
+html,
+body {
+	font-size: 100%;
+	height: 100%;
+}
+
+html {
+	box-sizing: border-box;
+}
+
+// Include our components
+@import "components/forms";

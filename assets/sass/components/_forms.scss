@@ -1,0 +1,63 @@
+$confirmation-bg-color: rgba( 0, 255, 0, 0.2 );
+
+#wpc-main {
+
+	.gform_confirmation_message {
+		background: $confirmation-bg-color;
+		padding: 20px;
+	}
+
+	.gform_wrapper {
+		max-width: 100%;
+		margin: 0;
+		padding: 0;
+
+		input[type="text"] {
+			margin: 0 0 0.5em 0;
+			line-height: 1;
+
+			&.ginput_quantity {
+				display: inline-block;
+			}
+		}
+
+		input[type="radio"],
+		input[type="checkbox"] {
+			margin: 3px 0 8px .063em !important;
+		}
+
+		ul li.gfield {
+			margin: 0 0 1em 0;
+		}
+
+		.gfield_label {
+			font-size: 1em;
+			line-height: 1.4;
+			font-weight: 600 !important;
+		}
+
+		.top_label {
+
+			.gfield_description {
+				padding: 0 0 .625em 0;
+			}
+		}
+
+		.gform_footer {
+			padding: 0;
+			margin: 1.5em 0 0 0;
+
+			.gform_button {
+				width: 100%;
+				text-align: center;
+				margin: 0;
+				border: 0;
+				//background: #444;
+				//color: #fff;
+				//line-height: 30px;
+				//font-weight: 300;
+				text-transform: uppercase;
+			}
+		}
+	}
+}
