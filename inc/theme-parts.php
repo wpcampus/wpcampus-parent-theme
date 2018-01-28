@@ -26,7 +26,7 @@ function wpcampus_parent_print_page_title() {
 	if ( is_404() ) {
 		_e( 'Page Not Found', 'wpcampus' );
 	} else {
-		the_title();
+		echo apply_filters( 'wpcampus_page_title', get_the_title() );
 	}
 
 	?></h1>
