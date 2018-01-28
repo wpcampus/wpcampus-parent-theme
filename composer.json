@@ -14,6 +14,7 @@
     "wp-coding-standards/wpcs": "*"
   },
   "scripts": {
+    "post-install-cmd": "gulp",
     "sniff": "vendor/bin/phpcs --runtime-set installed_paths vendor/wp-coding-standards/wpcs -p ./ --standard=WordPress-Core --report=full --extensions=php --ignore=*/vendor/*,*/node_modules/*"
   }
 }
