@@ -19,12 +19,7 @@ $theme_dir = trailingslashit( get_stylesheet_directory_uri() );
 <body <?php body_class(); ?>>
 	<?php
 
-	// Print network banner.
-	if ( function_exists( 'wpcampus_print_network_banner' ) ) {
-		wpcampus_print_network_banner(array(
-			'skip_nav_id' => 'wpc-main',
-		));
-	}
+	do_action( 'wpc_add_before_wrapper' );
 
 	?>
 	<div id="wpc-wrapper">

@@ -1,6 +1,20 @@
 <?php
 
 /**
+ * Print the network banner before the wrapper.
+ *
+ * Need the separate function so we
+ * can pass arguments to the function.
+ */
+function wpcampus_parent_print_network_banner() {
+	if ( function_exists( 'wpcampus_print_network_banner' ) ) {
+		wpcampus_print_network_banner( array(
+			'skip_nav_id' => 'wpc-main',
+		));
+	}
+}
+
+/**
  * Print the page title.
  *
  * By default, is added via "wpc_add_before_content" hook.

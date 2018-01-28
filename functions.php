@@ -50,6 +50,9 @@ add_action( 'after_setup_theme', 'wpcampus_parent_setup_theme', 0 );
  */
 function wpcampus_parent_setup_theme_parts() {
 
+	// Print network banner.
+	add_action( 'wpc_add_before_wrapper', 'wpcampus_parent_print_network_banner' );
+
 	// Print page title.
 	if ( ! is_front_page() ) {
 		add_action( 'wpc_add_before_content', 'wpcampus_parent_print_page_title' );
