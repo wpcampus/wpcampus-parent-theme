@@ -65,7 +65,12 @@ function wpcampus_parent_setup_theme_parts() {
 
 	// Print page title.
 	if ( ! is_front_page() ) {
-		add_action( 'wpc_add_before_content', 'wpcampus_parent_print_page_title' );
+
+		add_action( 'wpc_add_before_content', 'wpcampus_parent_print_page_title', 10 );
+
+		if ( ! is_404() ) {
+			add_action( 'wpc_add_before_content', 'wpcampus_parent_print_breadcrumbs', 15 );
+		}
 	}
 }
 add_action( 'wp', 'wpcampus_parent_setup_theme_parts', 0 );

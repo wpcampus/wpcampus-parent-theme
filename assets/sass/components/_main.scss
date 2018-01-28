@@ -71,6 +71,40 @@
 		}
 	}
 
+	.wpc-breadcrumbs {
+		display: block;
+		background: none;
+		width: auto;
+		margin: $element-margin-vert 0;
+		text-align: left;
+		color: #666;
+		font-size: 0.85rem;
+		line-height: 1.5;
+
+		li {
+			display: inline-block;
+			list-style: none;
+
+			a {
+				color: inherit;
+			}
+
+			&:before {
+				content: '/';
+				margin: 0 10px;
+			}
+
+			&:first-child:before {
+				display: none;
+			}
+		}
+	}
+
+	h1 + .wpc-breadcrumbs {
+		margin-top: -0.6rem;
+		margin-bottom: 2rem;
+	}
+
 	.panel,
 	.callout {
 		display: block;
