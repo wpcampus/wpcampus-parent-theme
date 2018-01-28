@@ -36,4 +36,4 @@ function wpcampus_parent_setup_theme() {
 		'caption',
 	));
 }
-add_action( 'after_setup_theme', 'wpcampus_parent_setup_theme' );
+add_action( 'after_setup_theme', 'wpcampus_parent_setup_theme', 0 );
