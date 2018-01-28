@@ -20,6 +20,34 @@ function wpcampus_parent_print_network_banner() {
 function wpcampus_parent_print_main_callout() {}
 
 /**
+ * Print the 2017 callout.
+
+function wpcampus_online_print_2017_callout() {
+
+	?>
+	<div class="panel gray" style="text-align:center;margin:20px 0 40px 0;padding-bottom:10px;">
+		<h2>WPCampus 2017 Conference on July 14-15</h2>
+		<p><a href="https://2017.wpcampus.org/" style="color:inherit;">WPCampus 2017</a> will take place July 14-15 on the campus of Canisius College in Buffalo, New York. <strong>Ticket sales have closed</strong> but, if you can't join us in person, all sessions will be live-streamed and made available online after the event. Gather with other WordPress users on your campus and create your own WPCampus experience!</p>
+		<a class="button panel blue block" style="margin-bottom:0;font-weight:bold;font-size:110%;background:#770000;display:block;" href="https://2017.wpcampus.org/">Visit the WPCampus 2017 website</a>
+	</div>
+	<?php
+}*/
+
+/**
+ * Print the education survey callout.
+
+function wpcampus_online_print_ed_survey_callout() {
+
+	?>
+	<div class="panel gray" style="text-align:center;margin:20px 0 40px 0;padding-bottom:10px;">
+		<h2>The "WordPress in Education" Survey</h2>
+		<p>After an overwhelming response to our 2016 survey, WPCampus is back this year to dig a little deeper on key topics that schools and campuses care about most when it comes to WordPress and website development. We’d love to include your feedback in our results this year. The larger the data set, the more we all benefit. <strong>The survey will close on June 23rd, 2017.</strong></p>
+		<a class="button panel blue block" style="margin-bottom:0;font-weight:bold;font-size:110%;background:#770000;display:block;" href="https://2017.wpcampus.org/announcements/wordpress-in-education-survey/">Take the "WordPress in Education" survey</a>
+	</div>
+	<?php
+}*/
+
+/**
  * Print the page title.
  *
  * By default, is added via "wpc_add_before_content" hook.
