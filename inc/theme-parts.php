@@ -15,6 +15,11 @@ function wpcampus_parent_print_network_banner() {
 }
 
 /**
+ * Print the main callout for the home page.
+ */
+function wpcampus_parent_print_main_callout() {}
+
+/**
  * Print the page title.
  *
  * By default, is added via "wpc_add_before_content" hook.
