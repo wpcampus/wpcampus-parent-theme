@@ -53,6 +53,11 @@ function wpcampus_parent_setup_theme_parts() {
 	// Print network banner.
 	add_action( 'wpc_add_before_wrapper', 'wpcampus_parent_print_network_banner' );
 
+	// Print network notifications.
+	if ( function_exists( 'wpcampus_print_network_notifications' ) ) {
+		add_action( 'wpc_add_before_main', 'wpcampus_print_network_notifications' );
+	}
+
 	// Print page title.
 	if ( ! is_front_page() ) {
 		add_action( 'wpc_add_before_content', 'wpcampus_parent_print_page_title' );
