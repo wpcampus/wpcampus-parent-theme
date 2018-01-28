@@ -1,5 +1,8 @@
 <?php
 
+$includes_path = TEMPLATEPATH . '/inc/';
+require_once $includes_path . 'theme-parts.php';
+
 /**
  * Setup the parent theme:
  *
@@ -37,6 +40,22 @@ function wpcampus_parent_setup_theme() {
 	));
 }
 add_action( 'after_setup_theme', 'wpcampus_parent_setup_theme', 0 );
+
+/**
+ * Add theme components.
+ *
+ * Runs in "wp" action since this is first
+ * hook available after WP object is setup
+ * and we can use conditional tags.
+ */
+function wpcampus_parent_setup_theme_parts() {
+
+	// Print page title.
+	if ( ! is_front_page() ) {
+		add_action( 'wpc_add_before_content', 'wpcampus_parent_print_page_title' );
+	}
+}
+add_action( 'wp', 'wpcampus_parent_setup_theme_parts', 0 );
 
 /**
  * Load favicons.
