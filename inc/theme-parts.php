@@ -74,6 +74,9 @@ function wpcampus_online_print_ed_survey_callout() {
  * By default, is added via "wpc_add_before_content" hook.
  */
 function wpcampus_parent_print_page_title() {
+
+	do_action( 'wpc_add_before_page_title' );
+
 	?>
 	<h1 class="wpc-page-title"><?php
 
@@ -85,6 +88,9 @@ function wpcampus_parent_print_page_title() {
 
 	?></h1>
 	<?php
+
+	do_action( 'wpc_add_after_page_title' );
+
 }
 
 /**
