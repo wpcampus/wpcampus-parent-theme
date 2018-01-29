@@ -1,6 +1,27 @@
 <?php
 
 /**
+ * Filter the <body> class to add the page slug.
+ */
+function wpc_online_filter_body_class( $class ) {
+	global $post;
+
+	// Make sure we have the fields we need.
+	if ( empty( $post ) || empty( $post->post_type ) || empty( $post->post_name ) ) {
+		return $class;
+	}
+
+	$new_class = "{$post->post_type}-{$post->post_name}";
+
+	if ( ! in_array( $new_class, $class ) ) {
+		$class[] = $new_class;
+	}
+
+	return $class;
+}
+add_action( 'body_class', 'wpc_online_filter_body_class' );
+
+/**
  * Print the network banner before the wrapper.
  *
  * Need the separate function so we
