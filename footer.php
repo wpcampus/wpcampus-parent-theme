@@ -1,5 +1,5 @@
-				</div><!-- .wpc-container -->
-			</div><!-- #wpc-content-->
+				</div><!-- #wpc-content-->
+			</div><!-- .wpc-container -->
 		</div><!-- #wpc-main -->
 		<?php
 

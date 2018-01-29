@@ -49,5 +49,5 @@
 
 			?>
 			<div id="wpc-main">
-				<div id="wpc-content" role="main">
-					<div class="wpc-container">
+				<div class="wpc-container">
+					<div id="wpc-content" role="main" class="<?php post_class(); ?>">
