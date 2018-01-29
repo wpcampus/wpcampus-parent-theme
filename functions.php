@@ -71,7 +71,6 @@ function wpcampus_parent_setup_theme_parts() {
 		if ( ! is_404() ) {
 			add_action( 'wpc_add_before_content', 'wpcampus_parent_print_breadcrumbs', 15 );
 		}
-
 	} else {
 
 		add_action( 'wpc_add_before_content', 'wpcampus_parent_print_main_callout', 10 );
@@ -86,7 +85,7 @@ add_action( 'wp', 'wpcampus_parent_setup_theme_parts', 0 );
 function wpcampus_parent_enqueue_theme() {
 
 	// Set the directories.
-	$wpcampus_dir = trailingslashit( get_template_directory_uri() );
+	$wpcampus_dir     = trailingslashit( get_template_directory_uri() );
 	$wpcampus_dir_css = $wpcampus_dir . 'assets/css/';
 
 	// Enqueue the base styles.
