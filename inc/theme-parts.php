@@ -143,11 +143,14 @@ function wpcampus_parent_get_breadcrumbs_html() {
 
 		$breadcrumbs_html .= '<li role="menuitem"' . ( ! empty( $crumb_classes ) ? ' class="' . implode( ' ', $crumb_classes ) . '"' : null ) . '>';
 
+		// Set the label.
+		$label = wp_trim_words( $crumb['label'], 10 );
+
 		// Add URL and label.
 		if ( 'current' != $crumb_key && ! empty( $crumb['url'] ) ) {
-			$breadcrumbs_html .= '<a href="' . $crumb['url'] . '"' . ( ! empty( $crumb['title'] ) ? ' title="' . $crumb['title'] . '"' : null ) . '>' . $crumb['label'] . '</a>';
+			$breadcrumbs_html .= '<a href="' . $crumb['url'] . '"' . ( ! empty( $crumb['title'] ) ? ' title="' . $crumb['title'] . '"' : null ) . '>' . $label . '</a>';
 		} else {
-			$breadcrumbs_html .= $crumb['label'];
+			$breadcrumbs_html .= $label;
 		}
 
 		$breadcrumbs_html .= '</li>';
