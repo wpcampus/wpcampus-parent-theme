@@ -98,19 +98,29 @@ button,
 		width: 100%;
 	}
 
+	&:focus,
+	&:hover {
+		background-color: rgba(0,0,0,0.2);
+	}
+
 	&.light-gray {
 		background-color: rgba(0,0,0,0.05);
 		color: #222;
+
+		&:focus,
+		&:hover {
+			background-color: rgba(0,0,0,0.2);
+		}
 	}
 
 	&.dark-blue {
 		background-color: $link-color;
 		color: #fff;
-	}
 
-	&:focus,
-	&:hover {
-		background-color: darken( $link-color, 10% );
+		&:focus,
+		&:hover {
+			background-color: darken( $link-color, 10% );
+		}
 	}
 }
 
