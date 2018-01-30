@@ -75,12 +75,33 @@ img {
 
 button,
 .button {
-	display: inline-block;
-	background: $link-color;
-	line-height: 3rem;
+	display: block;
+	width: 100%;
+	background-color: $link-color;
+	height: 40px;
+	line-height: 40px;
 	padding: 0 1.3rem;
 	color: #fff;
 	text-align: center;
+	cursor: pointer;
+	text-decoration: none;
+	border: 0;
+	border-radius: 5px;
+	transition: background-color 1s ease;
+
+	&.inline {
+		display: inline-block;
+		width: auto;
+	}
+
+	&.full {
+		width: 100%;
+	}
+
+	&:focus,
+	&:hover {
+		background-color: darken( $link-color, 10% );
+	}
 }
 
 hr {
