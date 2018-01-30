@@ -77,11 +77,11 @@ button,
 .button {
 	display: block;
 	width: 100%;
-	background-color: $link-color;
+	background-color: rgba(0,0,0,0.05);
 	height: 40px;
 	line-height: 40px;
 	padding: 0 1.3rem;
-	color: #fff;
+	color: #222;
 	text-align: center;
 	cursor: pointer;
 	text-decoration: none;
@@ -96,6 +96,16 @@ button,
 
 	&.full {
 		width: 100%;
+	}
+
+	&.light-gray {
+		background-color: rgba(0,0,0,0.05);
+		color: #222;
+	}
+
+	&.dark-blue {
+		background-color: $link-color;
+		color: #fff;
 	}
 
 	&:focus,
