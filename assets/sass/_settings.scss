@@ -3,6 +3,9 @@ $wpc-dark-blue: #2e3641;
 $wpc-royal-blue: #1159bd;
 $link-color: $wpc-royal-blue;
 
+// Layout
+$wpc-container-max-width: 920px;
+
 // FONTS
 $open_sans: 'Open Sans', sans-serif;
 
@@ -18,6 +21,12 @@ $main-bg: #fff;
 
 // LAYOUT
 $container-max-width: 920px;
+
+// Main
+$main-min-height: 200px;
+$main-padding-vert: 30px;
+$main-padding-horiz: 30px;
+$main-max-padding-vert: 40px;
 
 // GENERAL ELEMENTS
 $element-margin-vert: 1.5rem;
