@@ -6,7 +6,7 @@ require_once $includes_path . 'theme-parts.php';
 /**
  * Setup the parent theme:
  *
- * - Load the textdomain.
+ * - Load the text domain.
  * - Enable network functionality.
  * - Add theme support.
  */
@@ -32,7 +32,9 @@ function wpcampus_parent_setup_theme() {
 
 	// Add theme support.
 	add_theme_support( 'title-tag' );
+	add_theme_support( 'post-thumbnails' );
 	add_theme_support( 'html5', array(
+		'search-form',
 		'comment-form',
 		'comment-list',
 		'gallery',
