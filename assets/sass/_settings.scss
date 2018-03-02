@@ -3,6 +3,12 @@ $wpc-dark-blue: #2e3641;
 $wpc-royal-blue: #1159bd;
 $link-color: $wpc-royal-blue;
 
+// FONTS
+$open_sans: 'Open Sans', sans-serif;
+
+// Set the base font
+$body-font-family: $open_sans;
+
 // THE DOCUMENT
 $body-bg: #fafafa;
 $body-font-color: #222;

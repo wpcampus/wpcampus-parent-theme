@@ -80,6 +80,15 @@ function wpcampus_parent_setup_theme_parts() {
 add_action( 'wp', 'wpcampus_parent_setup_theme_parts', 0 );
 
 /**
+ * Make sure the Open Sans
+ * font weights we need are added.
+ */
+function wpcampus_parent_load_open_sans_weights( $weights ) {
+	return array_merge( $weights, array( 400 ) );
+}
+add_filter( 'wpcampus_open_sans_font_weights', 'wpcampus_parent_load_open_sans_weights' );
+
+/**
  * Setup/enqueue styles and scripts for theme.
  */
 function wpcampus_parent_enqueue_theme() {
@@ -89,7 +98,8 @@ function wpcampus_parent_enqueue_theme() {
 	$wpcampus_dir_css = $wpcampus_dir . 'assets/css/';
 
 	// Enqueue the base styles.
-	wp_enqueue_style( 'wpcampus-parent', $wpcampus_dir_css . 'styles.min.css', array(), null );
+	// wpc-fonts-open-sans is registered in the network plugin.
+	wp_enqueue_style( 'wpcampus-parent', $wpcampus_dir_css . 'styles.min.css', array( 'wpc-fonts-open-sans' ), null );
 
 }
 add_action( 'wp_enqueue_scripts', 'wpcampus_parent_enqueue_theme', 0 );
