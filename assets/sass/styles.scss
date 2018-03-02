@@ -46,12 +46,9 @@ body {
 	margin: 0 auto;
 }
 
-#wpc-body {
-	background: $main-bg;
-}
-
 @import "components/typography";
 @import "components/main";
 @import "components/forms";
 
+@import "components/header";
 @import "components/body";
