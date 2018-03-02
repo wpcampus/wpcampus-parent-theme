@@ -77,16 +77,14 @@ function wpcampus_parent_print_page_title() {
 
 	do_action( 'wpc_add_before_page_title' );
 
-	?>
-	<h1 class="wpc-page-title"><?php
-
 	if ( is_404() ) {
-		_e( 'Page Not Found', 'wpcampus' );
+		$page_title = __( 'Page Not Found', 'wpcampus' );
 	} else {
-		echo apply_filters( 'wpcampus_page_title', get_the_title() );
+		$page_title = apply_filters( 'wpcampus_page_title', get_the_title() );
 	}
 
-	?></h1>
+	?>
+	<h1 class="wpc-page-title"><?php echo $page_title; ?></h1>
 	<?php
 
 	do_action( 'wpc_add_after_page_title' );
