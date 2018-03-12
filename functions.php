@@ -86,7 +86,7 @@ add_action( 'wp', 'wpcampus_parent_setup_theme_parts', 0 );
  * font weights we need are added.
  */
 function wpcampus_parent_load_open_sans_weights( $weights ) {
-	return array_merge( $weights, array( 400 ) );
+	return array_merge( $weights, array( 400, 700 ) );
 }
 add_filter( 'wpcampus_open_sans_font_weights', 'wpcampus_parent_load_open_sans_weights' );
 
