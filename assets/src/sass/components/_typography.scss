@@ -46,7 +46,7 @@ p, ol, ul {
 	line-height: $body-line-height;
 }
 
-img, p, ul, ol {
+img, p, ul, ol, iframe {
 	margin: $element-margin-vert 0;
 }
 
@@ -79,6 +79,11 @@ img {
 		margin-left: auto;
 		margin-right: auto;
 	}
+}
+
+iframe {
+	width: 100%;
+	border: 0;
 }
 
 button,

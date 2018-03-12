@@ -97,7 +97,7 @@ function wpcampus_parent_enqueue_theme() {
 
 	// Set the directories.
 	$wpcampus_dir     = trailingslashit( get_template_directory_uri() );
-	$wpcampus_dir_css = $wpcampus_dir . 'assets/css/';
+	$wpcampus_dir_css = $wpcampus_dir . 'assets/build/css/';
 
 	// Enqueue the base styles.
 	// wpc-fonts-open-sans is registered in the network plugin.

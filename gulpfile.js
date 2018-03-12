@@ -14,12 +14,12 @@ const sassIncludes = [].concat(normalize);
 // Define the source paths for each file type.
 const src = {
 	php: ['**/*.php','!vendor/**','!node_modules/**'],
-	sass: ['assets/sass/**/*','!assets/sass/components']
+	sass: ['assets/src/sass/**/*','!assets/src/sass/components']
 };
 
 // Define the destination paths for each file type.
 const dest = {
-	sass: 'assets/css'
+	sass: 'assets/build/css'
 };
 
 // Take care of SASS.
