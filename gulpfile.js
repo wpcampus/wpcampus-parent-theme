@@ -2,6 +2,7 @@ const autoprefixer = require('gulp-autoprefixer');
 const cleanCSS = require('gulp-clean-css');
 const gulp = require('gulp');
 const mergeMediaQueries = require('gulp-merge-media-queries');
+const minify = require('gulp-minify');
 const normalize = require('node-normalize-scss').includePaths;
 const notify = require('gulp-notify');
 const rename = require('gulp-rename');
@@ -13,14 +14,30 @@ const sassIncludes = [].concat(normalize);
 
 // Define the source paths for each file type.
 const src = {
+	js: ['assets/src/js/**/*','!*.min.js'],
 	php: ['**/*.php','!vendor/**','!node_modules/**'],
 	sass: ['assets/src/sass/**/*','!assets/src/sass/components']
 };
 
 // Define the destination paths for each file type.
 const dest = {
+	js: 'assets/build/js',
 	sass: 'assets/build/css'
 };
+
+// Take care of JS.
+gulp.task('js',function() {
+	gulp.src(src.js)
+		.pipe(minify({
+			mangle: false,
+			noSource: true,
+			ext:{
+				min:'.min.js'
+			}
+		}))
+		.pipe(gulp.dest(dest.js))
+		.pipe(notify('WPC Parent JS compiled'));
+});
 
 // Take care of SASS.
 gulp.task('sass', function() {
@@ -62,10 +79,11 @@ gulp.task('php', function() {
 gulp.task('test',['php']);
 
 // Compile all the things.
-gulp.task('compile',['sass']);
+gulp.task('compile',['sass','js']);
 
 // I've got my eyes on you(r file changes).
 gulp.task('watch',function() {
+	gulp.watch(src.js,['js']);
 	gulp.watch(src.php,['php']);
 	gulp.watch(src.sass,['sass']);
 });
