@@ -30,6 +30,11 @@ function wpcampus_parent_setup_theme() {
 		wpcampus_enable_network_footer();
 	}
 
+	// Add the MailChimp signup form to bottom of all content.
+	if ( function_exists( 'wpcampus_print_mailchimp_signup' ) ) {
+		add_action( 'wpc_add_after_content', 'wpcampus_print_mailchimp_signup' );
+	}
+
 	// Add theme support.
 	add_theme_support( 'title-tag' );
 	add_theme_support( 'post-thumbnails' );
