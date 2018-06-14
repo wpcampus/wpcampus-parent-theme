@@ -345,3 +345,39 @@ function wpcampus_parent_get_post_type_archive_title( $post_type = '' ) {
 
 	return apply_filters( 'wpcampus_post_type_archive_title', $title, $post_type );
 }
+
+/**
+ * Filters the HTML attributes applied to a menu item's anchor element.
+ *
+ * Checks if the menu item is the current menu
+ * item and adds the aria "current" attribute.
+ *
+ * @param array   $atts   The HTML attributes applied to the menu item's `<a>` element.
+ * @param WP_Post $item  The current menu item.
+ * @return array Modified HTML attributes
+ */
+function wpcampus_parent_add_nav_menu_aria_current( $atts, $item ) {
+
+	/*
+	 * If it's not a nav menu item, we need
+	 * to check if the item is current post.
+	 *
+	 * Used for page menus.
+	 */
+	if ( ! empty( $item->ID ) && ! empty( $item->post_type ) && 'nav_menu_item' != $item->post_type ) {
+		global $post;
+		if ( ! empty( $post->ID ) && $post->ID == $item->ID ) {
+			$atts['aria-current'] = 'page';
+		}
+		return $atts;
+	}
+
+	// Means this is a regular nav menu item.
+	if ( ! empty( $item->current ) ) {
+		$atts['aria-current'] = 'page';
+	}
+
+	return $atts;
+}
+add_filter( 'nav_menu_link_attributes', 'wpcampus_parent_add_nav_menu_aria_current', 10, 2 );
+add_filter( 'page_menu_link_attributes', 'wpcampus_parent_add_nav_menu_aria_current', 10, 2 );
