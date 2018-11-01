@@ -166,7 +166,7 @@ function wpcampus_parent_get_breadcrumbs_html() {
 	}
 
 	// Wrap them in nav.
-	return '<nav class="wpc-breadcrumbs" role="menubar" aria-label="breadcrumbs">' . $breadcrumbs_html . '</nav>';
+	return '<nav class="wpc-breadcrumbs" aria-label="breadcrumbs"><ul>' . $breadcrumbs_html . '</ul></nav>';
 }
 
 /**

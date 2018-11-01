@@ -82,6 +82,15 @@
 		font-size: 0.85rem;
 		line-height: 1.5;
 
+		ul {
+			display: block;
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			font-size: inherit;
+			line-height: inherit;
+		}
+
 		li {
 			display: inline-block;
 			list-style: none;
