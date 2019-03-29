@@ -26,8 +26,8 @@ const dest = {
 };
 
 // Take care of JS.
-gulp.task('js',function() {
-	gulp.src(src.js)
+gulp.task('js', function(done) {
+	return gulp.src(src.js)
 		.pipe(minify({
 			mangle: false,
 			noSource: true,
@@ -36,11 +36,12 @@ gulp.task('js',function() {
 			}
 		}))
 		.pipe(gulp.dest(dest.js))
-		.pipe(notify('WPC Parent JS compiled'));
+		.pipe(notify('WPC Parent JS compiled'))
+		.on('end',done);
 });
 
 // Take care of SASS.
-gulp.task('sass', function() {
+gulp.task('sass', function(done) {
 	return gulp.src(src.sass)
 		.pipe(sass({
 			includePaths: sassIncludes,
@@ -76,17 +77,18 @@ gulp.task('php', function() {
 });
 
 // Test our files.
-gulp.task('test',['php']);
+gulp.task('test',gulp.series('php'));
 
 // Compile all the things.
-gulp.task('compile',['sass','js']);
-
-// I've got my eyes on you(r file changes).
-gulp.task('watch',function() {
-	gulp.watch(src.js,['js']);
-	gulp.watch(src.php,['php']);
-	gulp.watch(src.sass,['sass']);
-});
+gulp.task('compile',gulp.series('sass','js'));
 
 // Let's get this party started.
-gulp.task('default',['compile','test']);
+gulp.task('default', gulp.series('compile','test'));
+
+// I've got my eyes on you(r file changes).
+gulp.task('watch', gulp.series('default',function(done) {
+	gulp.watch(src.js, gulp.series('js'));
+	gulp.watch(src.sass,gulp.series('sass'));
+	gulp.watch(src.php,gulp.series('php'));
+	return done();
+}));
