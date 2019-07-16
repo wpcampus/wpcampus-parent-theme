@@ -54,3 +54,24 @@
 		color: $color;
 	}
 }
+
+@mixin button-reset-color() {
+	background-color: rgba(0,0,0,0.05);
+	color: #222;
+	transition: background-color 1s ease;
+
+	&:focus,
+	&:hover {
+		background-color: rgba(0,0,0,0.2);
+	}
+}
+
+@mixin button-primary() {
+	background-color: $wpc-royal-blue;
+	color: #fff;
+
+	&:focus,
+	&:hover {
+		background-color: darken( $wpc-royal-blue, 10% );
+	}
+}

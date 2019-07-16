@@ -3,7 +3,7 @@
 /**
  * Filter the <body> class to add the page slug.
  */
-function wpc_online_filter_body_class( $class ) {
+function wpc_parent_filter_body_class( $class ) {
 	global $post;
 
 	// Make sure we have the fields we need.
@@ -17,9 +17,15 @@ function wpc_online_filter_body_class( $class ) {
 		$class[] = $new_class;
 	}
 
+	// Add the template.
+	$wpc_template = get_query_var( 'wpc_template' );
+	if ( in_array( $wpc_template, array( 'content-only' ) ) ) {
+		$class[] = "wpc-{$wpc_template}";
+	}
+
 	return $class;
 }
-add_action( 'body_class', 'wpc_online_filter_body_class' );
+add_action( 'body_class', 'wpc_parent_filter_body_class' );
 
 /**
  * Print the network banner before the wrapper.
@@ -79,12 +85,60 @@ function wpcampus_parent_print_page_title() {
 
 	if ( is_404() ) {
 		$page_title = __( 'Page Not Found', 'wpcampus' );
+	} elseif ( is_post_type_archive() ) {
+		$page_title = post_type_archive_title( '', false );
 	} else {
-		$page_title = apply_filters( 'wpcampus_page_title', get_the_title() );
+		$page_title = get_the_title();
 	}
 
+	$page_title = apply_filters( 'wpcampus_page_title', $page_title );
+
+	$page_title_actions = apply_filters( 'wpcampus_page_title_container_actions', array(), $page_title );
+
+	$container_class = array();
+
+	if ( ! empty( $page_title_actions ) ) {
+		$container_class[] = 'has-actions';
+	}
+
+	$container_class = apply_filters( 'wpcampus_page_title_container_class', $container_class, $page_title );
+
+	// Make sure it has main container class.
+	$container_class = array_merge( array( 'wpc-page-title-container' ), $container_class );
+
 	?>
-	<h1 class="wpc-page-title"><?php echo $page_title; ?></h1>
+	<div<?php echo ! empty( $container_class ) ? ' class="' . implode( ' ', $container_class ) . '"' : ''; ?>>
+		<h1 class="wpc-page-title"><?php echo $page_title; ?></h1>
+		<?php
+
+		if ( ! empty( $page_title_actions ) ) :
+			?>
+			<nav class="wpc-page-title-actions" aria-label="<?php _e( 'Page navigation', 'wpcampus' ); ?>">
+				<ul>
+					<?php
+
+					foreach ( $page_title_actions as $action ) :
+
+						// Make sure we have info we need.
+						if ( empty( $action['href'] ) || empty( $action['label'] ) ) :
+							continue;
+						endif;
+
+						?>
+						<li>
+							<a class="button" href="<?php echo $action['href']; ?>"><?php echo $action['label']; ?></a>
+						</li>
+						<?php
+					endforeach;
+
+					?>
+				</ul>
+			</nav>
+			<?php
+		endif;
+
+		?>
+	</div>
 	<?php
 
 	do_action( 'wpc_add_after_page_title' );
@@ -145,14 +199,16 @@ function wpcampus_parent_get_breadcrumbs_html() {
 		// Setup classes.
 		$crumb_classes = array( $crumb_key );
 
-		$breadcrumbs_html .= '<li role="menuitem"' . ( ! empty( $crumb_classes ) ? ' class="' . implode( ' ', $crumb_classes ) . '"' : null ) . '>';
+		$breadcrumbs_html .= '<li' . ( ! empty( $crumb_classes ) ? ' class="' . implode( ' ', $crumb_classes ) . '"' : null ) . '>';
 
 		// Set the label.
 		$label = wp_trim_words( $crumb['label'], 10 );
 
 		// Add URL and label.
 		if ( 'current' != $crumb_key && ! empty( $crumb['url'] ) ) {
-			$breadcrumbs_html .= '<a href="' . $crumb['url'] . '"' . ( ! empty( $crumb['title'] ) ? ' title="' . $crumb['title'] . '"' : null ) . '>' . $label . '</a>';
+			$breadcrumbs_html .= '<a href="' . $crumb['url'] . '" title="' . $crumb['label'] . '">' . $label . '</a>';
+		} elseif ( $crumb['label'] != $label ) {
+			$breadcrumbs_html .= '<span aria-label="' . $crumb['label'] . '">' . $label . '</span>';
 		} else {
 			$breadcrumbs_html .= $label;
 		}
@@ -180,7 +236,7 @@ function wpcampus_parent_get_breadcrumbs() {
 	 * Start with home.
 	 */
 	$breadcrumbs = array(
-		array(
+		'home' => array(
 			'url'   => '/',
 			'label' => __( 'Home', 'wpcampus' ),
 		),
@@ -288,7 +344,7 @@ function wpcampus_parent_get_breadcrumbs() {
 		}
 	}
 
-	return $breadcrumbs;
+	return apply_filters( 'wpcampus_breadcrumbs', $breadcrumbs );
 }
 
 /**

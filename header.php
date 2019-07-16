@@ -42,7 +42,7 @@
 		do_action( 'wpc_add_before_body' );
 
 		?>
-		<div id="wpc-body">
+		<div id="wpc-body" role="main">
 			<?php
 
 			do_action( 'wpc_add_before_main' );
@@ -50,4 +50,4 @@
 			?>
 			<div id="wpc-main">
 				<div class="wpc-container">
-					<div id="wpc-content" role="main" class="<?php post_class(); ?>">
+					<div id="wpc-content" <?php post_class(); ?>>

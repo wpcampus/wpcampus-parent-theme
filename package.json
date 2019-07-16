@@ -20,14 +20,15 @@
   "homepage": "https://github.com/wpcampus/wpcampus-parent-theme#readme",
   "devDependencies": {
     "gulp": "^4.0.0",
-    "gulp-autoprefixer": "^4.1.0",
-    "gulp-clean-css": "^3.9.2",
+    "gulp-autoprefixer": "^4.0.0",
+    "gulp-clean-css": "^3.9.0",
     "gulp-merge-media-queries": "^0.2.1",
-    "gulp-minify": "^2.1.0",
-    "gulp-notify": "^3.2.0",
+    "gulp-minify": "^3.0.2",
+    "gulp-notify": "^3.0.0",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.1.0",
-    "gulp-shell": "^0.6.5",
-    "node-normalize-scss": "^3.0.0"
+    "gulp-shell": "^0.7.0",
+    "iframe-resizer": "^4.1.1",
+    "node-normalize-scss": "^8.0.0"
   }
 }

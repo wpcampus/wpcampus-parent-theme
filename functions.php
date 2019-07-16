@@ -15,24 +15,19 @@ function wpcampus_parent_setup_theme() {
 	// Load the textdomain.
 	load_theme_textdomain( 'wpcampus', get_template_directory() . '/languages' );
 
-	// Enable network banner.
-	if ( function_exists( 'wpcampus_enable_network_banner' ) ) {
-		wpcampus_enable_network_banner();
+	// Enable network components.
+	if ( function_exists( 'wpcampus_network_enable' ) ) {
+		wpcampus_network_enable( array( 'banner', 'notifications', 'coc', 'footer' ) );
 	}
 
-	// Enable network notifications.
-	if ( function_exists( 'wpcampus_enable_network_notifications' ) ) {
-		wpcampus_enable_network_notifications();
-	}
-
-	// Enable network footer.
-	if ( function_exists( 'wpcampus_enable_network_footer' ) ) {
-		wpcampus_enable_network_footer();
+	// Print Code of Conduct after main content.
+	if ( function_exists( 'wpcampus_print_network_coc' ) ) {
+		add_action( 'wpc_add_before_footer', 'wpcampus_print_network_coc' );
 	}
 
 	// Add the MailChimp signup form to bottom of all content.
 	if ( function_exists( 'wpcampus_print_mailchimp_signup' ) ) {
-		add_action( 'wpc_add_after_content', 'wpcampus_print_mailchimp_signup' );
+		add_action( 'wpc_add_after_content', 'wpcampus_print_mailchimp_signup', 1000 );
 	}
 
 	// Add theme support.
@@ -62,13 +57,14 @@ function wpcampus_parent_setup_theme_parts() {
 
 	// Print network notifications.
 	if ( function_exists( 'wpcampus_print_network_notifications' ) ) {
-		add_action( 'wpc_add_before_main', 'wpcampus_print_network_notifications' );
+		add_action( 'wpc_add_before_body', 'wpcampus_print_network_notifications' );
 	}
 
 	// Print network subscribe after notifications.
-	if ( function_exists( 'wpcampus_print_network_subscribe' ) ) {
+	// @TODO must have been deleted at some point?
+	/*if ( function_exists( 'wpcampus_print_network_subscribe' ) ) {
 		add_action( 'wpc_add_before_main', 'wpcampus_print_network_subscribe' );
-	}
+	}*/
 
 	// Print page title.
 	if ( ! is_front_page() ) {
@@ -91,7 +87,7 @@ add_action( 'wp', 'wpcampus_parent_setup_theme_parts', 0 );
  * font weights we need are added.
  */
 function wpcampus_parent_load_open_sans_weights( $weights ) {
-	return array_merge( $weights, array( 400, 700 ) );
+	return array_merge( $weights, array( 400, 600, 700 ) );
 }
 add_filter( 'wpcampus_open_sans_font_weights', 'wpcampus_parent_load_open_sans_weights' );
 
@@ -103,50 +99,124 @@ function wpcampus_parent_enqueue_theme() {
 	// Set the directories.
 	$wpcampus_dir     = trailingslashit( get_template_directory_uri() );
 	$wpcampus_dir_css = $wpcampus_dir . 'assets/build/css/';
+	$wpcampus_dir_js  = $wpcampus_dir . 'assets/build/js/';
+
+	$assets_ver = '2.4';
 
 	// Enqueue the base styles.
 	// wpc-fonts-open-sans is registered in the network plugin.
-	wp_enqueue_style( 'wpcampus-parent', $wpcampus_dir_css . 'styles.min.css', array( 'wpc-fonts-open-sans' ), null );
+	wp_enqueue_style( 'wpcampus-parent', $wpcampus_dir_css . 'styles.min.css', array( 'wpc-fonts-open-sans' ), $assets_ver );
+
+	// Right now this is enqueued in the app template file.
+	wp_register_script( 'wpc-iframe-resizer', $wpcampus_dir_js . 'iframeResizer.min.js', array(), $assets_ver );
+	wp_register_script( 'wpc-parent-iframe', $wpcampus_dir_js . 'wpc-parent-iframe.min.js', array( 'jquery', 'wpc-iframe-resizer' ), $assets_ver );
 
 }
 add_action( 'wp_enqueue_scripts', 'wpcampus_parent_enqueue_theme', 0 );
 
-/**
- * Load favicons.
- */
-function wpcampus_add_favicons() {
+function wpcampus_print_content() {
 
-	// Set the images folder.
-	$favicons_folder = get_template_directory_uri() . '/assets/images/favicons/';
+	$is_archive = is_archive();
 
-	?>
-	<link rel="shortcut icon" href="<?php echo $favicons_folder; ?>wpcampus-favicon-60.png"/>
-	<?php
+	if ( $is_archive ) {
 
-	// Set the Apple image sizes.
-	$apple_image_sizes = array( 57, 60, 72, 76, 114, 120, 144, 152, 180 );
-	foreach ( $apple_image_sizes as $size ) :
+		$article_css = array( 'wpcampus-articles' );
+
+		$post_types = get_query_var( 'post_type' );
+		if ( ! empty( $post_types ) ) {
+
+			if ( ! is_array( $post_types ) ) {
+				$post_types = explode( ',', $post_types );
+			}
+
+			foreach ( $post_types as $post_type ) {
+				$article_css[] = "post-{$post_type}";
+			}
+		}
+
+		echo '<div class="' . implode( ' ', $article_css ) . '">';
+
+	}
+
+	while ( have_posts() ) :
+		the_post();
+
+		// Get post information.
+		$post_id = get_the_ID();
+		$post_permalink = get_permalink( $post_id );
+
+		do_action( 'wpcampus_before_article' );
+
 		?>
-		<link rel="apple-touch-icon" sizes="<?php echo "{$size}x{$size}"; ?>" href="<?php echo $favicons_folder; ?>wpcampus-favicon-<?php echo $size; ?>.png">
+		<article id="post-<?php echo $post_id; ?>" <?php post_class(); ?>>
+			<?php
+
+			if ( $is_archive ) :
+
+				do_action( 'wpcampus_before_article_header' );
+
+				?>
+				<h2 class="article-title"><a href="<?php echo $post_permalink; ?>"><?php the_title(); ?></a></h2>
+				<?php
+
+				do_action( 'wpcampus_after_article_header' );
+
+				do_action( 'wpcampus_before_article_excerpt' );
+
+				the_excerpt();
+
+				do_action( 'wpcampus_after_article_excerpt' );
+
+			else :
+
+				do_action( 'wpcampus_before_article_content' );
+
+				the_content();
+
+				do_action( 'wpcampus_after_article_content' );
+
+			endif;
+
+			?>
+		</article>
 		<?php
-	endforeach;
 
-	// Set the Android image sizes.
-	$android_image_sizes = array( 16, 32, 96, 192 );
-	foreach ( $android_image_sizes as $size ) :
+		do_action( 'wpcampus_after_article' );
 
-		?>
-		<link rel="icon" type="image/png" sizes="<?php echo "{$size}x{$size}"; ?>" href="<?php echo $favicons_folder; ?>wpcampus-favicon-<?php echo $size; ?>.png">
-		<?php
+	endwhile;
 
-	endforeach;
-
-	?>
-	<meta name="msapplication-TileColor" content="#ffffff">
-	<meta name="msapplication-TileImage" content="<?php echo $favicons_folder; ?>wpcampus-favicon-144x144.png">
-	<meta name="theme-color" content="#ffffff">
-	<?php
+	if ( $is_archive ) {
+		echo '</div>';
+	}
 }
-add_action( 'wp_head', 'wpcampus_add_favicons' );
-add_action( 'admin_head', 'wpcampus_add_favicons' );
-add_action( 'login_head', 'wpcampus_add_favicons' );
+
+/**
+ * Add custom query vars.
+ */
+function wpcampus_parent_add_query_vars( $vars ) {
+	$vars[] = 'wpc_template';
+	return $vars;
+}
+add_filter( 'query_vars', 'wpcampus_parent_add_query_vars' );
+
+/**
+ * Load template based on query vars.
+ */
+function wpcampus_parent_setup_template( $template ) {
+
+	// See if we're querying for a template.
+	$wpc_template = get_query_var( 'wpc_template' );
+	if ( empty( $wpc_template ) ) {
+		return $template;
+	}
+
+	$wpc_template = 'template-' . $wpc_template;
+
+	//do_action( "get_template_part_{$wpc_template}", $wpc_template, null );
+
+	// Look for our template, find default if doesnt exist.
+	$templates = array( "{$wpc_template}.php", $template );
+
+	return locate_template( $templates, false, false );
+}
+add_filter( 'template_include', 'wpcampus_parent_setup_template' );

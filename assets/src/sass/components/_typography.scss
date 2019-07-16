@@ -21,17 +21,18 @@ h1 {
 	font-size: 2.8rem;
 	line-height: 1.2;
 	font-weight: 300;
+	margin: 1.8rem 0;
 }
 
 h2 {
 	display: block;
 	clear: left;
-	font-size: 2rem;
+	font-size: 1.9rem;
 	line-height: 2.8rem;
-	font-weight: 300;
+	font-weight: 600;
 	margin: 0 0 1rem 0;
 
-	h1 + & {
+	.wpc-page-title-container + & {
 		margin-top: -15px;
 	}
 }
@@ -39,18 +40,22 @@ h2 {
 h3 {
 	display: block;
 	clear: left;
-	font-size: 1.4rem;
+	font-size: 1.5rem;
 	line-height: 2rem;
-	font-weight: 700;
+	font-weight: 400;
 	margin: 0 0 1rem 0;
 }
 
 p, ol, ul {
 	font-size: $body-font-size;
 	line-height: $body-line-height;
+
+	h3 + & {
+		margin-top: 0.8rem;
+	}
 }
 
-img, p, ul, ol, iframe {
+img, p, ul, ol {
 	margin: $element-margin-vert 0;
 }
 
@@ -69,7 +74,7 @@ ol, ul {
 	}
 
 	ol, ul {
-		margin-top: 0.8rem;
+		margin-top: 0.5rem;
 		margin-bottom: 0.8rem
 	}
 }
@@ -79,32 +84,51 @@ img {
 	height: auto;
 
 	&.aligncenter {
+		 display: block;
+		 margin-left: auto;
+		 margin-right: auto;
+	}
+
+	&.alignright {
 		display: block;
 		margin-left: auto;
 		margin-right: auto;
+
+		@media #{$wpc-container-mid-width-bp} {
+			float: right;
+			margin-left: $element-margin-vert;
+			margin-right: 0;
+		}
 	}
 }
 
 iframe {
 	width: 100%;
 	border: 0;
+	margin: 0 0 $element-margin-vert 0;
+
+	&.wpc-iframe-resize {
+
+		&.loading {
+			opacity: 0.2;
+			pointer-events: none;
+		}
+	}
 }
 
 button,
 .button {
 	display: block;
 	width: 100%;
-	background-color: rgba(0,0,0,0.05);
 	height: 40px;
 	line-height: 40px;
 	padding: 0 1.3rem;
-	color: #222;
 	text-align: center;
 	cursor: pointer;
-	text-decoration: none;
+	text-decoration: underline;
 	border: 0;
 	border-radius: 5px;
-	transition: background-color 1s ease;
+	@include button-reset-color();
 
 	&.inline {
 		display: inline-block;
@@ -117,13 +141,18 @@ button,
 
 	&.bigger {
 		font-size: 1.3rem;
-		height: 50px;
-		line-height: 50px;
+		height: 55px;
+		line-height: 55px;
 	}
 
-	&:focus,
-	&:hover {
-		background-color: rgba(0,0,0,0.2);
+	&.light-blue {
+		background-color: $wpc-light-blue;
+		color: #222;
+
+		&:focus,
+		&:hover {
+			background-color: darken( $wpc-light-blue, 10% );
+		}
 	}
 
 	&.light-gray {
@@ -136,6 +165,25 @@ button,
 		}
 	}
 
+	&.primary,
+	&.royal-blue {
+		@include button-primary();
+	}
+
+	&.blue-2019 {
+		background: $wpc-2019-blue;
+		color: #fff;
+
+		&:focus,
+		&:hover {
+			background-color: darken( $wpc-2019-blue, 20% );
+		}
+	}
+
+	&.light-2019-blue {
+		background: rgba( $wpc-2019-blue, 0.1 );
+	}
+
 	&.dark-blue {
 		background-color: $link-color;
 		color: #fff;
@@ -145,11 +193,21 @@ button,
 			background-color: darken( $link-color, 10% );
 		}
 	}
+
+	&.orange {
+		background: $wpc-orange;
+		color: #fff;
+
+		&:focus,
+		&:hover {
+			background-color: darken( $wpc-orange, 10% );
+		}
+	}
 }
 
 hr {
 	background: #e3e3e3;
 	border: 0;
 	height: 1px;
-	margin: 3rem 0;
+	margin: 2.5rem 0;
 }

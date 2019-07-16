@@ -7,7 +7,7 @@
 	padding: $main-padding-vert $main-padding-horiz;
 	overflow: auto;
 
-	@media screen and (min-width: $wpc-container-max-width) {
+	@media #{$wpc-container-max-width-bp} {
 		padding-top: $main-max-padding-vert;
 		padding-bottom: $main-max-padding-vert;
 	}

@@ -9,8 +9,6 @@ const rename = require('gulp-rename');
 const sass = require('gulp-sass');
 const shell = require('gulp-shell');
 
-// Define our SASS includes.
-const sassIncludes = [].concat(normalize);
 
 // Define the source paths for each file type.
 const src = {
@@ -59,7 +57,8 @@ gulp.task('sass', function(done) {
 			suffix: '.min'
 		}))
 		.pipe(gulp.dest(dest.sass))
-		.pipe(notify('WPC Parent SASS compiled'));
+		.pipe(notify('WPC Parent SASS compiled'))
+        .on('end',done);
 });
 
 // "Sniff" our PHP.

@@ -37,6 +37,10 @@ body {
 	@include for-screen-reader();
 }
 
+.margin-top-no {
+	margin-top: 0;
+}
+
 #wpc-wrapper {
 	height: 100%;
 }

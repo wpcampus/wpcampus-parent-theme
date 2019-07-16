@@ -9,6 +9,8 @@
 	</div><!-- #wpc-body -->
 	<?php
 
+	do_action( 'wpc_add_before_footer' );
+
 	// Print network footer.
 	if ( function_exists( 'wpcampus_print_network_footer' ) ) {
 		wpcampus_print_network_footer();
