@@ -7,15 +7,6 @@ $link-color: $wpc-royal-blue;
 $wpc-orange: #A76739;
 $wpc-2019-blue: #347dc8;
 
-// Layout
-$wpc-container-max-width: 920px;
-$wpc-container-max-width-bp: "screen and (min-width: " + $wpc-container-max-width + ");";
-//@media #{$wpc-container-max-width-bp} {}
-
-$wpc-container-mid-width: 660px;
-$wpc-container-mid-width-bp: "screen and (min-width: " + $wpc-container-mid-width + ");";
-//@media #{$wpc-container-mid-width-bp} {}
-
 // FONTS
 $open_sans: 'Open Sans', sans-serif;
 
@@ -52,3 +43,12 @@ $panel-padding-horiz: 20px;
 
 $sponsor-bp-width: 600px;
 $sponsor-bp-width-bp: "screen and (min-width: " + $sponsor-bp-width + ");";
+
+// Layout
+$wpc-container-max-width: 920px;
+$wpc-container-max-width-bp: "screen and (min-width: " + ( $wpc-container-max-width + $main-padding-horiz ) + ");";
+//@media #{$wpc-container-max-width-bp} {}
+
+$wpc-container-mid-width: 660px;
+$wpc-container-mid-width-bp: "screen and (min-width: " + $wpc-container-mid-width + ");";
+//@media #{$wpc-container-mid-width-bp} {}

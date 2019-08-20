@@ -8,7 +8,6 @@
 	overflow: auto;
 
 	@media #{$wpc-container-max-width-bp} {
-		padding-top: $main-max-padding-vert;
-		padding-bottom: $main-max-padding-vert;
+		padding: $main-max-padding-vert 0;
 	}
 }

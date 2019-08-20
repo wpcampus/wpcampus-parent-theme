@@ -289,24 +289,19 @@
 	ul, ol {
 
 		&.columns {
-			overflow: auto;
-			width: 100%;
-			padding-left: 25px;
 
 			@media #{$wpc-container-mid-width-bp} {
 				&.two {
+					display: grid;
+					grid-template-columns: auto auto;
+					grid-column-gap: 1em;
+					overflow: visible;
+					margin: 0 0 0 2.5em;
+					padding: 0;
+					list-style-position: outside;
 
 					li {
-						float: left;
-						width: 50%;
-
-						&:nth-child(odd) {
-							padding-right: 10px;
-						}
-
-						&:nth-child(even) {
-							padding-left: 10px;
-						}
+						padding-left: 0;
 					}
 				}
 			}
