@@ -20,14 +20,14 @@ function wpcampus_parent_setup_theme() {
 		wpcampus_network_enable( array( 'banner', 'notifications', 'coc', 'footer' ) );
 	}
 
+	// Add the MailChimp signup form to bottom of all content.
+	if ( function_exists( 'wpcampus_print_mailchimp_signup' ) ) {
+		add_action( 'wpc_add_before_footer', 'wpcampus_print_mailchimp_signup' );
+	}
+
 	// Print Code of Conduct after main content.
 	if ( function_exists( 'wpcampus_print_network_coc' ) ) {
 		add_action( 'wpc_add_before_footer', 'wpcampus_print_network_coc' );
-	}
-
-	// Add the MailChimp signup form to bottom of all content.
-	if ( function_exists( 'wpcampus_print_mailchimp_signup' ) ) {
-		add_action( 'wpc_add_after_content', 'wpcampus_print_mailchimp_signup', 1000 );
 	}
 
 	// Add theme support.
