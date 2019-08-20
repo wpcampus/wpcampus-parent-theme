@@ -7,14 +7,14 @@ const normalize = require('node-normalize-scss').includePaths;
 const notify = require('gulp-notify');
 const rename = require('gulp-rename');
 const sass = require('gulp-sass');
-const shell = require('gulp-shell');
 
+// Define our SASS includes.
+const sassIncludes = [].concat(normalize);
 
 // Define the source paths for each file type.
 const src = {
 	js: ['assets/src/js/**/*','!*.min.js'],
-	php: ['**/*.php','!vendor/**','!node_modules/**'],
-	sass: ['assets/src/sass/**/*','!assets/src/sass/components']
+	sass: ['assets/src/sass/**/*.scss','!assets/src/sass/components']
 };
 
 // Define the destination paths for each file type.
@@ -47,7 +47,6 @@ gulp.task('sass', function(done) {
 		}).on('error', sass.logError))
 		.pipe(mergeMediaQueries())
 		.pipe(autoprefixer({
-			browsers: ['last 2 versions'],
 			cascade: false
 		}))
 		.pipe(cleanCSS({
@@ -61,33 +60,15 @@ gulp.task('sass', function(done) {
         .on('end',done);
 });
 
-// "Sniff" our PHP.
-gulp.task('php', function() {
-	// TODO: Clean up. Want to run command and show notify for sniff errors.
-	return gulp.src('index.php', {read: false})
-		.pipe(shell(['composer sniff'], {
-			ignoreErrors: true,
-			verbose: false
-		}))
-		.pipe(notify('WPC Parent PHP sniffed'), {
-			onLast: true,
-			emitError: true
-		});
-});
-
-// Test our files.
-gulp.task('test',gulp.series('php'));
-
 // Compile all the things.
 gulp.task('compile',gulp.series('sass','js'));
 
 // Let's get this party started.
-gulp.task('default', gulp.series('compile','test'));
+gulp.task('default', gulp.series('compile'));
 
 // I've got my eyes on you(r file changes).
 gulp.task('watch', gulp.series('default',function(done) {
 	gulp.watch(src.js, gulp.series('js'));
 	gulp.watch(src.sass,gulp.series('sass'));
-	gulp.watch(src.php,gulp.series('php'));
 	return done();
 }));

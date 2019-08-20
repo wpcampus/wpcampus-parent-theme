@@ -6,9 +6,6 @@
     "type": "git",
     "url": "git+https://github.com/wpcampus/wpcampus-parent-theme.git"
   },
-  "scripts": {
-    "test": "composer sniff"
-  },
   "author": "WPCampus <code@wpcampus.org>",
   "contributors": [
     "Rachel Cherry <rachel@wpcampus.org>"
@@ -18,17 +15,19 @@
     "url": "https://github.com/wpcampus/wpcampus-parent-theme/issues"
   },
   "homepage": "https://github.com/wpcampus/wpcampus-parent-theme#readme",
+  "browserslist": [
+    "last 2 versions"
+  ],
   "devDependencies": {
-    "gulp": "^4.0.0",
-    "gulp-autoprefixer": "^4.0.0",
-    "gulp-clean-css": "^3.9.0",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^7.0.0",
+    "gulp-clean-css": "^4.2.0",
     "gulp-merge-media-queries": "^0.2.1",
-    "gulp-minify": "^3.0.2",
-    "gulp-notify": "^3.0.0",
-    "gulp-rename": "^1.2.2",
-    "gulp-sass": "^3.1.0",
-    "gulp-shell": "^0.7.0",
+    "gulp-minify": "^3.1.0",
+    "gulp-notify": "^3.2.0",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^4.0.2",
     "iframe-resizer": "^4.1.1",
-    "node-normalize-scss": "^8.0.0"
+    "node-normalize-scss": "^8.0.1"
   }
 }
