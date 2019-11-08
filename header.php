@@ -42,7 +42,7 @@
 		do_action( 'wpc_add_before_body' );
 
 		?>
-		<div id="wpc-body" role="main">
+		<main id="wpc-body">
 			<?php
 
 			do_action( 'wpc_add_before_main' );

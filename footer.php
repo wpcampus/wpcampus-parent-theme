@@ -6,7 +6,7 @@
 		do_action( 'wpc_add_after_main' );
 
 		?>
-	</div><!-- #wpc-body -->
+	</main><!-- #wpc-body -->
 	<?php
 
 	do_action( 'wpc_add_before_footer' );
