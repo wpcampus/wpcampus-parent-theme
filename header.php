@@ -26,13 +26,13 @@
 			do_action( 'wpc_add_before_header' );
 
 			?>
-			<div id="wpc-header" role="banner">
+			<header id="wpc-header">
 				<?php
 
 				do_action( 'wpc_add_to_header' );
 
 				?>
-			</div>
+			</header>
 			<?php
 
 			do_action( 'wpc_add_after_header' );
