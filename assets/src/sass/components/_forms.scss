@@ -62,6 +62,15 @@ $confirmation-bg-color: rgba( 0, 255, 0, 0.2 );
 			}
 		}
 
+		.gfield_checkbox li label,
+		.gfield_radio li label,
+		.description,
+		.gfield_description,
+		.gsection_description,
+		.instruction {
+			font-size: 1rem;
+		}
+
 		.gfield_label {
 			font-size: 1em;
 			line-height: 1.4;
