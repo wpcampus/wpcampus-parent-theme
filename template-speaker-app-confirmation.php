@@ -5,7 +5,11 @@
  */
 
 // If we came from the application, redirect out of the frame.
-if ( ! empty( $_SERVER['HTTP_REFERER'] ) && 'https://' . DOMAIN_CURRENT_SITE . '/speaker-application/' == $_SERVER['HTTP_REFERER'] ) :
+
+// Is the URL on the main site thats being iframed.
+$app_url = 'https://' . DOMAIN_CURRENT_SITE . '/speaker-application/';
+
+if ( ! empty( $_SERVER['HTTP_REFERER'] ) && $app_url == $_SERVER['HTTP_REFERER'] ) :
 
 	// @TODO move URL to settings.
 	if ( ! empty( $_GET['redirect'] ) ) {
