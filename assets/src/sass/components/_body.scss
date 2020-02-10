@@ -5,7 +5,7 @@
 #wpc-content {
 	min-height: $main-min-height;
 	padding: $main-padding-vert $main-padding-horiz;
-	overflow: auto;
+	overflow: visible;
 
 	@media #{$wpc-container-max-width-bp} {
 		padding: $main-max-padding-vert 0;
