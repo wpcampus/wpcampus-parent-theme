@@ -13,7 +13,7 @@ if ( ! empty( $_SERVER['HTTP_REFERER'] ) && $app_url == $_SERVER['HTTP_REFERER']
 
 	// @TODO move URL to settings.
 	if ( ! empty( $_GET['redirect'] ) ) {
-		wpcampus_network()->html_redirect( 'https://2020.' . DOMAIN_CURRENT_SITE . '/call-for-speakers/confirmation/' );
+		wpcampus_network()->html_redirect( 'https://2020.' . DOMAIN_CURRENT_SITE . '/speakers/confirmation/' );
 	}
 
 	wpcampus_network()->content_only();
