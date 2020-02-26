@@ -13,14 +13,14 @@ const sassIncludes = [].concat(normalize);
 
 // Define the source paths for each file type.
 const src = {
-	js: ['assets/src/js/**/*','!*.min.js'],
-	sass: ['assets/src/sass/**/*.scss','!assets/src/sass/components']
+	js: ['assets/js/src/**/*','!*.min.js'],
+	sass: ['assets/css/src/**/*.scss','!assets/css/src/components']
 };
 
 // Define the destination paths for each file type.
 const dest = {
-	js: 'assets/build/js',
-	sass: 'assets/build/css'
+	js: 'assets/js',
+	sass: 'assets/css'
 };
 
 // Take care of JS.

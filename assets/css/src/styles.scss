@@ -1,5 +1,5 @@
-@import "settings";
-@import "mixins";
+@import "assets/css/src/settings";
+@import "assets/css/src/mixins";
 @import "normalize";
 
 *,
@@ -50,9 +50,9 @@ body {
 	margin: 0 auto;
 }
 
-@import "components/typography";
-@import "components/main";
-@import "components/forms";
+@import "assets/css/src/components/typography";
+@import "assets/css/src/components/main";
+@import "assets/css/src/components/forms";
 
-@import "components/header";
-@import "components/body";
+@import "assets/css/src/components/header";
+@import "assets/css/src/components/body";

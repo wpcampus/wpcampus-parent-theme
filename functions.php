@@ -98,8 +98,8 @@ function wpcampus_parent_enqueue_theme() {
 
 	// Set the directories.
 	$wpcampus_dir     = trailingslashit( get_template_directory_uri() );
-	$wpcampus_dir_css = $wpcampus_dir . 'assets/build/css/';
-	$wpcampus_dir_js  = $wpcampus_dir . 'assets/build/js/';
+	$wpcampus_dir_css = $wpcampus_dir . 'assets/css/';
+	$wpcampus_dir_js  = $wpcampus_dir . 'assets/js/';
 
 	$assets_ver = '2.5';
 
